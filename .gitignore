@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**cd spr
 !**/src/test/**
+.idea
 
 # dependencies
 node_modules/

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="tic-tac-toe-3d-spring-boot" />
         <module name="maven-project" />
       </profile>
     </annotationProcessing>
