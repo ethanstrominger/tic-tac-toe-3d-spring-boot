@@ -2,24 +2,24 @@ package com.ethan;
 
 public class GamesSession {
 
-    private static String currentNickName;
+    private static String currentNickname;
     private static int guestCount = 0;
 
-    public static void setCurrentNickName(String currentNickName) {
-        GamesSession.currentNickName = currentNickName;
+    public static void setCurrentNickname(String currentNickname) {
+        GamesSession.currentNickname = currentNickname;
     }
 
-    public static String getCurrentNickName() {
-        return GamesSession.currentNickName;
+    public static String getCurrentNickname() {
+        return GamesSession.currentNickname;
     }
 
     public static int getGuestCount() {
         return GamesSession.guestCount;
     }
 
-    public static void setGuestNickName(String beforeNickName) {
+    public static void setGuestNickname(String beforeNickname) {
         GamesSession.guestCount = GamesSession.guestCount + 1;
-        GamesSession.currentNickName =
-                "Guest"+Integer.toString(guestCount) + "-" + beforeNickName;
+        GamesSession.currentNickname =
+                "Guest"+Integer.toString(guestCount) + "-" + beforeNickname;
     }
 }

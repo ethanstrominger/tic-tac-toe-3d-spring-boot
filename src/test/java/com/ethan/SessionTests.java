@@ -8,20 +8,20 @@ public class SessionTests {
 
     @Test
     public void testSetSessionUser() {
-        String currentNickName="John";
-        GamesSession.setCurrentNickName(currentNickName);
-        assertEquals(currentNickName, GamesSession.getCurrentNickName());
+        String currentNickname="John";
+        GamesSession.setCurrentNickname(currentNickname);
+        assertEquals(currentNickname, GamesSession.getCurrentNickname());
     }
 
     @Test
     public void testSetGuestUser() {
-        String beforeNickName="Fred";
+        String beforeNickname="Fred";
         int guestCountBefore = GamesSession.getGuestCount();
-        String expectedNickName = "Guest" +
+        String expectedNickname = "Guest" +
                 Integer.toString(guestCountBefore + 1) +
-                "-" + beforeNickName;
-        GamesSession.setGuestNickName(beforeNickName);
-        assertEquals(expectedNickName, GamesSession.getCurrentNickName());
+                "-" + beforeNickname;
+        GamesSession.setGuestNickname(beforeNickname);
+        assertEquals(expectedNickname, GamesSession.getCurrentNickname());
         assertEquals(guestCountBefore + 1, GamesSession.getGuestCount());
     }
 }

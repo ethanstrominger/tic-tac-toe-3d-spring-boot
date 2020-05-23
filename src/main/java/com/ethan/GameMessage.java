@@ -6,13 +6,13 @@ import java.util.UUID;
 @Getter
 public class GameMessage {
     UUID id = UUID.randomUUID();
-    private String fromNickname = GamesSession.getCurrentNickName();
+    private String fromNickname = GamesSession.getCurrentNickname();
     private String toNickname;
-    private String gameMessage;
+    private String messageText;
     long timeCreated = System.currentTimeMillis();
 
-    public GameMessage(String toNickname, String gameMessage) {
+    public GameMessage(String toNickname, String messageText) {
         this.toNickname = toNickname;
-        this.gameMessage = gameMessage;
+        this.messageText = messageText;
     }
 }
