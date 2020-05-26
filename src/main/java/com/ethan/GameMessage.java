@@ -1,16 +1,15 @@
 package com.ethan;
 import lombok.Getter;
-import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 @Getter
 public class GameMessage {
-    UUID id = UUID.randomUUID();
-    private String fromNickname;
-    private String toNickname;
-    private String messageText;
-    long timeCreated = System.currentTimeMillis();
+    final UUID id = UUID.randomUUID();
+    private final String fromNickname;
+    private final String toNickname;
+    private final String messageText;
+    final long timeCreated = System.currentTimeMillis();
 
     public GameMessage(String fromNickname, String toNickname, String messageText) {
         this.fromNickname = fromNickname+"";

@@ -9,7 +9,7 @@ public class GameMessageController {
     @PostMapping(value="/messages")
     public static @ResponseBody  ResponseEntity<GameMessage> controllerAddMessage (@RequestBody GameMessage gameMessage) {
         GameMessages.addMessage(gameMessage);
-        return new ResponseEntity<GameMessage>(gameMessage, HttpStatus.OK);
+        return new ResponseEntity<>(gameMessage, HttpStatus.OK);
     }
 
     @GetMapping("/messages/user/{fromNickname}")
@@ -17,6 +17,6 @@ public class GameMessageController {
     getMessages(@PathVariable String fromNickname) {
         GamesSession.authenticateNickname(fromNickname);
         GameMessage[] gameMessages = GameMessages.getMessages(fromNickname);
-        return new ResponseEntity<GameMessage[]>(gameMessages, HttpStatus.OK);
+        return new ResponseEntity<>(gameMessages, HttpStatus.OK);
     }
 }

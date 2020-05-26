@@ -8,6 +8,7 @@ class MessageCentralApplicationTests {
 
 	@Test
 	void contextLoads() {
+		MessageCentralApplication.main(new String[]{""});
 	}
 
 }

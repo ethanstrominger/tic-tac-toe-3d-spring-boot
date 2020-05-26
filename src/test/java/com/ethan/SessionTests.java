@@ -7,6 +7,11 @@ import static org.junit.Assert.assertEquals;
 public class SessionTests {
 
     @Test
+    public void testSessionClass() {
+        GamesSession session = new GamesSession();
+    }
+
+    @Test
     public void testSetSessionUser() {
         String currentNickname="John";
         GamesSession.authenticateNickname(currentNickname);
@@ -18,7 +23,7 @@ public class SessionTests {
         String beforeNickname="Fred";
         int guestCountBefore = GamesSession.getGuestCount();
         String expectedNickname = "Guest" +
-                Integer.toString(guestCountBefore + 1) +
+                (guestCountBefore + 1) +
                 "-" + beforeNickname;
         GamesSession.setGuestNickname(beforeNickname);
         assertEquals(expectedNickname, GamesSession.getCurrentNickname());

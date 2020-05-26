@@ -6,16 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+// TODO: Replace with ENUM
 public class GameDatabase {
 
-    public static List<GameMessage> dbGameMessages = new ArrayList<GameMessage>();
+    public static final List<GameMessage> dbGameMessages = new ArrayList<>();
 
     public static void addMessage(GameMessage gameMessage) {
         dbGameMessages.add(gameMessage);
     }
 
     public static GameMessage[] getGamesFromOrTo(String userNickname) {
-        List<GameMessage> listMessages = new ArrayList<GameMessage>();
+        List<GameMessage> listMessages = new ArrayList<>();
+        // TODO: Refactor into method and turn condition into a message
         for (GameMessage gameMessage:dbGameMessages) {
             if (gameMessage.getFromNickname().equals(userNickname) ||
                     gameMessage.getToNickname().equals(userNickname)) {

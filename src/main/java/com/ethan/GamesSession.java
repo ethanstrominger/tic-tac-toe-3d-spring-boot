@@ -20,6 +20,6 @@ public class GamesSession {
     public static void setGuestNickname(String beforeNickname) {
         GamesSession.guestCount = GamesSession.guestCount + 1;
         GamesSession.currentNickname =
-                "Guest"+Integer.toString(guestCount) + "-" + beforeNickname;
+                "Guest"+ guestCount + "-" + beforeNickname;
     }
 }

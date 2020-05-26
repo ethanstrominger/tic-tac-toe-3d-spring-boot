@@ -2,31 +2,35 @@ package com.ethan;
 
 import org.junit.Test;
 
-import java.util.UUID;
-
 import static org.junit.Assert.*;
 
 public class MessageTest {
-
+    TestUtil m = new TestUtil();
+// TODO: Add test for adding a message to the database and for getting a message
     @Test
     public void testCreateGameMessage() {
         String EXPECTED_MESSAGE = "Hi Mary";
-        String EXPECTED_TO_NICKNAME = "Mary";        long startTransaction = System.currentTimeMillis();
+        String EXPECTED_TO_NICKNAME = "Mary";
+        long startTransaction = System.currentTimeMillis();
         String EXPECTED_FROM_NICKNAME = "John";
 
         GameMessage gameMessage = new GameMessage(EXPECTED_FROM_NICKNAME, EXPECTED_TO_NICKNAME, EXPECTED_MESSAGE);
-        GameMessages.addMessage(gameMessage);
         long actualTimeCreated = gameMessage.getTimeCreated();
         long endTransactionTime = System.currentTimeMillis();
 
         assertNotNull(gameMessage.getId());
-        assertTrue(gameMessage.getId() instanceof UUID);
         assertTrue(actualTimeCreated >= startTransaction & actualTimeCreated <= endTransactionTime);
         assertEquals(EXPECTED_FROM_NICKNAME, gameMessage.getFromNickname());
         assertEquals(EXPECTED_TO_NICKNAME, gameMessage.getToNickname());
         assertEquals(EXPECTED_MESSAGE, gameMessage.getMessageText());
     }
 
+    @Test
+    public void testMessagesClass() {
+        GameMessages m = new GameMessages();
+    }
+
+    //TODO: Split into two tests
     @Test
     public void testGetOnlyMyMessages() {
         String myNickname = "Ethan";
@@ -40,47 +44,18 @@ public class MessageTest {
         int expectedToCount = 3;
         int expectedTotalCount = expectedFromCount + expectedToCount;
 
-        addRepeatMessages(myNickname, user1Nickname, messageToMe, expectedFromCount);
-        addRepeatMessages(user1Nickname, user2Nickname, messageNotToMe, expectedNotToMeCount);
-        addRepeatMessages(user2Nickname, myNickname, messageToMe, expectedToCount);
+        TestUtil.addRepeatMessages(myNickname, user1Nickname, messageFromMe, expectedFromCount);
+        TestUtil.addRepeatMessages(user1Nickname, user2Nickname, messageNotToMe, expectedNotToMeCount);
+        TestUtil.addRepeatMessages(user2Nickname, myNickname, messageToMe, expectedToCount);
 
-        GameMessage myMessages[] = GameMessages.getMessages(myNickname);
+        GameMessage[] myMessages = GameMessages.getMessages(myNickname);
         assertEquals(expectedTotalCount, myMessages.length);
 
-        int actualFromCount = getCountFromMe(myNickname, myMessages);
+        int actualFromCount = TestUtil.getCountFromMe(myNickname, myMessages);
         assertEquals(expectedFromCount, actualFromCount);
 
-        int actualToCount = getCountToMe(myNickname, myMessages);
+        int actualToCount = TestUtil.getCountToMe(myNickname, myMessages);
         assertEquals(expectedToCount, actualToCount);
     }
 
-    private static int getCountFromMe(String myNickname, GameMessage[] myMessages) {
-        int actualFromMe = 0;
-        for (GameMessage message: myMessages) {
-            if (message.getFromNickname().equals(myNickname)) {
-                actualFromMe++;
-            }
-        }
-        return actualFromMe;
-    }
-
-    private static int getCountToMe(String myNickname, GameMessage[] myMessages) {
-        int actualToMe = 0;
-        for (GameMessage message: myMessages) {
-            if (message.getToNickname().equals(myNickname)) {
-                actualToMe++;
-            }
-        }
-        return actualToMe;
-    }
-    private static void addRepeatMessages(
-            String fromNickname,
-            String toNickname,
-            String messageText,
-            int numberToRepeat) {
-        for (int i = 0; i < numberToRepeat; i++) {
-            GameMessage gameMessage = new GameMessage(fromNickname, toNickname, messageText + " " + Integer.toString(i));
-            GameMessages.addMessage(gameMessage);
-        }
-    }
 }
