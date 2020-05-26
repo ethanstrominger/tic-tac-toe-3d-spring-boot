@@ -1,5 +1,6 @@
 package com.ethan;
 import lombok.Getter;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
@@ -12,8 +13,8 @@ public class GameMessage {
     long timeCreated = System.currentTimeMillis();
 
     public GameMessage(String fromNickname, String toNickname, String messageText) {
-        this.fromNickname = fromNickname;
-        this.toNickname = toNickname;
-        this.messageText = messageText;
+        this.fromNickname = fromNickname+"";
+        this.toNickname = toNickname+"";
+        this.messageText = messageText+"";
     }
 }

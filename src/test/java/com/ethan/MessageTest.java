@@ -57,7 +57,7 @@ public class MessageTest {
     private static int getCountFromMe(String myNickname, GameMessage[] myMessages) {
         int actualFromMe = 0;
         for (GameMessage message: myMessages) {
-            if (message.getFromNickname() == myNickname) {
+            if (message.getFromNickname().equals(myNickname)) {
                 actualFromMe++;
             }
         }
@@ -67,7 +67,7 @@ public class MessageTest {
     private static int getCountToMe(String myNickname, GameMessage[] myMessages) {
         int actualToMe = 0;
         for (GameMessage message: myMessages) {
-            if (message.getToNickname() == myNickname) {
+            if (message.getToNickname().equals(myNickname)) {
                 actualToMe++;
             }
         }

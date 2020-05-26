@@ -1,11 +1,14 @@
 package com.ethan;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class GameDatabase {
-    private static List<GameMessage> dbGameMessages = new ArrayList<GameMessage>();
+
+    public static List<GameMessage> dbGameMessages = new ArrayList<GameMessage>();
 
     public static void addMessage(GameMessage gameMessage) {
         dbGameMessages.add(gameMessage);
@@ -14,8 +17,8 @@ public class GameDatabase {
     public static GameMessage[] getGamesFromOrTo(String userNickname) {
         List<GameMessage> listMessages = new ArrayList<GameMessage>();
         for (GameMessage gameMessage:dbGameMessages) {
-            if (gameMessage.getFromNickname() == userNickname ||
-                gameMessage.getToNickname() == userNickname) {
+            if (gameMessage.getFromNickname().equals(userNickname) ||
+                    gameMessage.getToNickname().equals(userNickname)) {
                 listMessages.add(gameMessage);
             }
         }
