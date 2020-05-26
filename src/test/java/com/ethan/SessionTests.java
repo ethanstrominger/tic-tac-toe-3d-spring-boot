@@ -9,7 +9,7 @@ public class SessionTests {
     @Test
     public void testSetSessionUser() {
         String currentNickname="John";
-        GamesSession.setCurrentNickname(currentNickname);
+        GamesSession.authenticateNickname(currentNickname);
         assertEquals(currentNickname, GamesSession.getCurrentNickname());
     }
 

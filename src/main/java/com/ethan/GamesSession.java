@@ -5,7 +5,7 @@ public class GamesSession {
     private static String currentNickname;
     private static int guestCount = 0;
 
-    public static void setCurrentNickname(String currentNickname) {
+    public static void authenticateNickname(String currentNickname) {
         GamesSession.currentNickname = currentNickname;
     }
 

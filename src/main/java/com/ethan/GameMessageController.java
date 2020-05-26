@@ -2,22 +2,19 @@ package com.ethan;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-public class GameMessages {
-    @PostMapping(value="/message")
-    public static GameMessage addMessage(GameMessage gameMessage) {
-        GamesSession.authenticateNickname(gameMessage.getFromNickname());
+@RestController
+public class GameMessageController {
+    @PostMapping(value="/messages")
+    public static @ResponseBody  ResponseEntity<GameMessage> controllerAddMessage (@RequestBody GameMessage gameMessage) {
         GameDatabase.addMessage(gameMessage);
-        return gameMessage;
+        return new ResponseEntity<GameMessage>(gameMessage, HttpStatus.OK);
     }
 
-    @GetMapping("/message/user/{nickname}")
+    @GetMapping("/messages/user/{fromNickname}")
     public static @ResponseBody ResponseEntity<GameMessage[]>
-           getMessages(@PathVariable String fromNickname) {
+    getMessages(@PathVariable String fromNickname) {
         GamesSession.authenticateNickname(fromNickname);
         GameMessage[] gameMessages = GameDatabase.getGamesFromOrTo(fromNickname);
         return new ResponseEntity<GameMessage[]>(gameMessages, HttpStatus.OK);

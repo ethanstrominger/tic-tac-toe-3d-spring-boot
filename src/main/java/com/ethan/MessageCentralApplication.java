@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MessageCentralApplication {
 
 	public static void main(String[] args) {
-		System.out.println("About to start server");
+		System.out.println("Starting server");
 		SpringApplication.run(MessageCentralApplication.class, args);
-		System.out.println("Started server");
+		System.out.println("Server is started");
 	}
 
 }

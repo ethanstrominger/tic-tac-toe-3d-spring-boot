@@ -14,7 +14,8 @@ public class MessageTest {
         String EXPECTED_TO_NICKNAME = "Mary";        long startTransaction = System.currentTimeMillis();
         String EXPECTED_FROM_NICKNAME = "John";
 
-        GameMessage gameMessage = GameMessages.addMessage(EXPECTED_FROM_NICKNAME, EXPECTED_TO_NICKNAME, EXPECTED_MESSAGE);
+        GameMessage gameMessage = new GameMessage(EXPECTED_FROM_NICKNAME, EXPECTED_TO_NICKNAME, EXPECTED_MESSAGE);
+        GameMessages.addMessage(gameMessage);
         long actualTimeCreated = gameMessage.getTimeCreated();
         long endTransactionTime = System.currentTimeMillis();
 
@@ -78,9 +79,8 @@ public class MessageTest {
             String messageText,
             int numberToRepeat) {
         for (int i = 0; i < numberToRepeat; i++) {
-            GameMessages.addMessage(fromNickname, toNickname, messageText + " " + Integer.toString(i));
+            GameMessage gameMessage = new GameMessage(fromNickname, toNickname, messageText + " " + Integer.toString(i));
+            GameMessages.addMessage(gameMessage);
         }
     }
-
-
 }

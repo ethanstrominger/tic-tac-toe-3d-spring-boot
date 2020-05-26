@@ -1,6 +1,6 @@
 package com.ethan;
 
-import java.beans.BeanProperty;
+import org.springframework.context.annotation.Bean;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +8,6 @@ public class GameDatabase {
     private static List<GameMessage> dbGameMessages = new ArrayList<GameMessage>();
 
     public static void addMessage(GameMessage gameMessage) {
-        System.out.println("X");
-        System.out.println(gameMessage.getFromNickname());
-        System.out.println(gameMessage.getToNickname());
         dbGameMessages.add(gameMessage);
     }
 
