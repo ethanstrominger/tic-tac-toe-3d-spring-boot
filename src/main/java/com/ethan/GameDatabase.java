@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 // TODO: Replace with ENUM
@@ -27,5 +28,14 @@ public class GameDatabase {
         GameMessage[] arrayMessages = new GameMessage[listMessages.size()];
         arrayMessages = listMessages.toArray(arrayMessages);
         return arrayMessages;
+    }
+
+    public static GameMessage getById(String userNickname, UUID id) {
+        for (GameMessage gameMessage:dbGameMessages) {
+            if (gameMessage.getId().equals(id)) {
+                return gameMessage;
+            }
+        }
+        return null;
     }
 }

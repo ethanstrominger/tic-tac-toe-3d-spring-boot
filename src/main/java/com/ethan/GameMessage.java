@@ -5,11 +5,11 @@ import java.util.UUID;
 
 @Getter
 public class GameMessage {
-    final UUID id = UUID.randomUUID();
+    private final UUID id = UUID.randomUUID();
     private final String fromNickname;
     private final String toNickname;
     private final String messageText;
-    final long timeCreated = System.currentTimeMillis();
+    private final long timeCreated = System.currentTimeMillis();
 
     public GameMessage(String fromNickname, String toNickname, String messageText) {
         this.fromNickname = fromNickname+"";
