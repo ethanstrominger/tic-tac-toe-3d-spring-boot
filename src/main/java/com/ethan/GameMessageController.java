@@ -9,20 +9,24 @@ import java.util.UUID;
 
 @RestController
 public class GameMessageController {
-    @PostMapping(value="/messages/get")
+    @CrossOrigin
+    @PostMapping(value="/messages/create")
     public static @ResponseBody  ResponseEntity<GameMessage> controllerAddMessage (@RequestBody GameMessage gameMessage) {
+        System.out.println("Here");
         GameMessages.addMessage(gameMessage);
         return new ResponseEntity<>(gameMessage, HttpStatus.OK);
     }
 
-    @GetMapping("/messages/user/{fromNickname}")
+    @CrossOrigin
+    @GetMapping("/messages/getbyuser/{fromNickname}")
     public static @ResponseBody ResponseEntity<GameMessage[]>
     getMessages(@PathVariable String fromNickname) {
         GameMessage[] gameMessages = GameMessages.getMessages(fromNickname);
         return new ResponseEntity<>(gameMessages, HttpStatus.OK);
     }
 
-    @GetMapping("/messages/id/{fromNickname}")
+    @CrossOrigin
+    @GetMapping("/messages/getbyid/{id}")
     public static @ResponseBody ResponseEntity<GameMessage>
     getMessageById(@PathVariable String fromNickname, @RequestBody MultiValueMap<String,String> values) {
         String s = values.getFirst("id");
