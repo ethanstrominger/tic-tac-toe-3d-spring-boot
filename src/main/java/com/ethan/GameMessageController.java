@@ -27,7 +27,7 @@ public class GameMessageController {
     getMessageById(@PathVariable String fromNickname, @RequestBody MultiValueMap<String,String> values) {
         String s = values.getFirst("id");
         UUID id = UUID.fromString(s);
-        GameMessage gameMessage = GameMessages.getById(fromNickname, id);
+        GameMessage gameMessage = GameMessages.getById(id);
         return new ResponseEntity<>(gameMessage, HttpStatus.OK);
     }
 

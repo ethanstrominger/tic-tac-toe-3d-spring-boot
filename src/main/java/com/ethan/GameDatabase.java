@@ -30,7 +30,7 @@ public class GameDatabase {
         return arrayMessages;
     }
 
-    public static GameMessage getById(String userNickname, UUID id) {
+    public static GameMessage getById(UUID id) {
         for (GameMessage gameMessage:dbGameMessages) {
             if (gameMessage.getId().equals(id)) {
                 return gameMessage;

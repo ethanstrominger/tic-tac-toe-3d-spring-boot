@@ -72,7 +72,7 @@ public class MessageTest {
         GameMessages.addMessage(message2);
         GameMessages.addMessage(message3);
 
-        GameMessage resultMessage = GameMessages.getById("Ethan",message2.getId());
+        GameMessage resultMessage = GameMessages.getById(message2.getId());
         assertEquals(message2.getId(), resultMessage.getId());
         assertEquals(message2.getToNickname(), resultMessage.getToNickname());
         assertEquals(message2.getMessageText(), resultMessage.getMessageText());
@@ -85,7 +85,7 @@ public class MessageTest {
         GameMessages.addMessage(message1);
         GameMessages.addMessage(message2);
         UUID invalidId = UUID.randomUUID();
-        assertNull(GameMessages.getById("Ethan", invalidId));
+        assertNull(GameMessages.getById(invalidId));
     }
 
         //TODO: Split into two tests
