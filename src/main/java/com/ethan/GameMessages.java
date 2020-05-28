@@ -1,5 +1,7 @@
 package com.ethan;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.UUID;
@@ -17,4 +19,5 @@ public class GameMessages {
     public static GameMessage getById(UUID id) {
         return GameDatabase.getById(id);
     }
+
 }
