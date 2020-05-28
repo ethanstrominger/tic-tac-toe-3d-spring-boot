@@ -1,4 +1,4 @@
-package com.ethan;
+package com.ethan.game;
 
 import org.springframework.stereotype.Component;
 

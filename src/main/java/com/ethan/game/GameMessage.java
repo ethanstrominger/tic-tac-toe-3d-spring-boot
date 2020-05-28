@@ -1,4 +1,4 @@
-package com.ethan;
+package com.ethan.game;
 import lombok.Getter;
 
 import java.util.UUID;

@@ -1,5 +1,7 @@
 package com.ethan;
 
+import com.ethan.game.GameMessage;
+import com.ethan.game.GameMessages;
 import org.junit.Test;
 
 import java.util.UUID;

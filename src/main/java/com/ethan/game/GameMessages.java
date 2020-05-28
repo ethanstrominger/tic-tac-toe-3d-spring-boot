@@ -1,7 +1,5 @@
-package com.ethan;
+package com.ethan.game;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.UUID;

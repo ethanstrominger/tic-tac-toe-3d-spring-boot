@@ -1,5 +1,6 @@
 package com.ethan;
 
+import com.ethan.game.GameDatabase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
