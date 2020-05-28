@@ -81,6 +81,31 @@ public class SessionTests {
         assertEquals(HttpStatus.REQUEST_TIMEOUT, response.getStatusCode());
 
     }
+
+    @Test
+    public void testUpdateWhenPolling() throws InterruptedException {
+        String userName = "Ethan";
+        int frequencyMillis = 25;
+        int firstSleepMillis = 100;
+        int timeoutMillis = 200;
+        GameMessage[] emptyMessages = {};
+        response = new ResponseEntity<GameMessage[]>(emptyMessages, HttpStatus.CREATED);
+        new Thread(() -> {
+            try {
+                response =
+                        GameSession.pollForChanges(userName, frequencyMillis, timeoutMillis);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        Thread.sleep(firstSleepMillis);
+        assertEquals(HttpStatus.CREATED, response.getStatusCode() );
+
+        Thread.sleep(timeoutMillis);
+        assertEquals(HttpStatus.REQUEST_TIMEOUT, response.getStatusCode());
+
+    }
 }
 
 

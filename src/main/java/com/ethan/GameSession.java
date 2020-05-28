@@ -11,6 +11,7 @@ public class GameSession {
     private static int guestCount = 0;
     private final String userNickname;
     private final long timeCreated = System.currentTimeMillis();
+    private long timeMessageUpdated;
 
     private long timeRefreshed = System.currentTimeMillis();
 
@@ -51,5 +52,8 @@ public class GameSession {
         GameSession.guestCount = GameSession.guestCount + 1;
         GameSession.currentNickname =
                 "Guest"+ guestCount + "-" + beforeNickname;
+    }
+
+    public void setMessageUpdated(String userNickname) {
     }
 }

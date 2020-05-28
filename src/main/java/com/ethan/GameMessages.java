@@ -9,7 +9,12 @@ import java.util.UUID;
 public class GameMessages {
 
     public static void addMessage(GameMessage gameMessage) {
+        
         GameDatabase.addMessage(gameMessage);
+        String fromNickname = gameMessage.getFromNickname();
+        String toNickname = gameMessage.getToNickname();
+        GameSessions.getSession(fromNickname).setMessageUpdated(fromNickname);
+        GameSessions.getSession(toNickname).setMessageUpdated(fromNickname);
     }
 
     public static GameMessage[] getMessages(@PathVariable String fromNickname) {

@@ -116,4 +116,18 @@ public class MessageTest {
         assertEquals(expectedToCount, actualToCount);
     }
 
+    @Test
+    public void seesionUpdatedWhenMessageCreated() {
+        final String USER1_NICKNAME = "Session Update User1";
+        final String USER2_NICKNAME = "Session Update User2";
+        final long nowMillis = System.currentTimeMillis();
+        GameMessage message = new GameMessage(USER1_NICKNAME, USER2_NICKNAME, "Message");
+        GameMessages.addMessage(message);
+        long timeUser1Millis = GameSessions.getSession(USER1_NICKNAME).getTimeMessageUpdated();
+        assertTrue(timeUser1Millis >= nowMillis);
+        assertTrue(timeUser1Millis <= System.currentTimeMillis());
+        long timeUser2Millis = GameSessions.getSession(USER2_NICKNAME).getTimeMessageUpdated();
+        assertTrue(timeUser2Millis >= nowMillis);
+        assertTrue(timeUser2Millis <= System.currentTimeMillis());
+    }
 }
