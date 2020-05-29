@@ -9,6 +9,8 @@ import java.util.UUID;
 public class GameMessages {
 
     public static void addMessage(GameMessage gameMessage) {
+        Notifications.addUserNotification(gameMessage.getFromNickname());
+        Notifications.addUserNotification(gameMessage.getToNickname());
         GameDatabase.addMessage(gameMessage);
     }
 
