@@ -1,5 +1,6 @@
-package com.ethan;
+package com.ethan.data;
 
+import com.ethan.Notifications;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,6 @@ public class NotificationsTest {
     @Before public void initialize() {
         Notifications.emptyUserMessagesQueue();
     }
-
 
     @Test
     public void testCanGetUsersWithMessages() {

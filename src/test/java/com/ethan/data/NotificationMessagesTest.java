@@ -1,5 +1,8 @@
-package com.ethan;
+package com.ethan.data;
 
+import com.ethan.GameMessage;
+import com.ethan.GameMessages;
+import com.ethan.Notifications;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.stereotype.Component;
