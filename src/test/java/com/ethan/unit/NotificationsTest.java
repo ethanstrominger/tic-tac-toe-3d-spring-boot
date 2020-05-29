@@ -1,4 +1,4 @@
-package com.ethan.data;
+package com.ethan.unit;
 
 import com.ethan.Notifications;
 import org.junit.Before;

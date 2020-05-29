@@ -1,4 +1,4 @@
-package com.ethan.data;
+package com.ethan.unit;
 
 import com.ethan.GameMessage;
 import com.ethan.GameMessages;
