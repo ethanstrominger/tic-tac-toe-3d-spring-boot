@@ -1,5 +1,8 @@
 package com.ethan;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -31,4 +34,25 @@ public class Notifications {
     public static void deleteNotification(String userNameToBeDeleted) {
         notifications.remove(userNameToBeDeleted);
     }
+
+    private static void pause(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ResponseEntity<String> pollForChanges(String userName, long frequencyMillis, long timeoutMillis) {
+            long startTime = System.currentTimeMillis();
+            String emptyMessage = null;
+            while (System.currentTimeMillis() - startTime <= timeoutMillis) {
+                if (Notifications.isNotificationExists(userName)) {
+                    return new ResponseEntity<String>(emptyMessage, HttpStatus.ACCEPTED);
+                }
+                pause(frequencyMillis);
+            }
+
+            return new ResponseEntity<String>(emptyMessage, HttpStatus.REQUEST_TIMEOUT);
+        }
 }
