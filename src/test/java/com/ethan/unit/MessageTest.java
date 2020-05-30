@@ -60,10 +60,7 @@ public class MessageTest {
         assertEquals(EXPECTED_MESSAGE, gameMessage.getMessageText());
     }
 
-    @Test
-    public void testMessagesClass() {
-        GameMessages m = new GameMessages();
-    }
+
 
     @Test
     public void testGetMessageById() {

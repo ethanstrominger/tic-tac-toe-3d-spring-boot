@@ -56,6 +56,7 @@ public class NotificationsTest {
         assertTrue(Notifications.isNotificationExists(otherUser));
     }
 
+    @Test
     public void testDeleteNotification() {
         final String userNameToBeDeleted = "To Be Deleted";
         final String userName1 = "User 1";

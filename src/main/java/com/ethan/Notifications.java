@@ -1,5 +1,6 @@
 package com.ethan;
 
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -35,12 +36,12 @@ public class Notifications {
         notifications.remove(userNameToBeDeleted);
     }
 
+    // Note on @SneakyThrows: avoids need for adding exception to this method signature
+    // and anything that calls it.  If thread.sleep somehow throws an exception, it will cause application
+    // to stop with the exception.
+    @SneakyThrows
     private static void pause(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(millis);
     }
 
     public static ResponseEntity<String> pollForChanges(String userName, long frequencyMillis, long timeoutMillis) {

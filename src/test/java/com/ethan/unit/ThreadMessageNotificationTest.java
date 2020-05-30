@@ -1,5 +1,6 @@
 package com.ethan.unit;
 import com.ethan.Notifications;
+import lombok.SneakyThrows;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class ThreadMessageNotificationTest {
     }
 
     @Test
-    public void testPollSetsStatusToCreatedIfUserHasNotification() {
+    public void testSetsHttpStatusToCreatedIfUserHasNotification() {
         String userName = "Ethan";
         int frequencyMillis = 25;
         int firstSleepMillis = 100;
@@ -53,11 +54,8 @@ public class ThreadMessageNotificationTest {
         assertEquals(HttpStatus.ACCEPTED, threadResponse.getStatusCode());
     }
 
+    @SneakyThrows
     private void pause(long firstSleepMillis) {
-        try {
-            Thread.sleep(firstSleepMillis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(firstSleepMillis);
     }
 }

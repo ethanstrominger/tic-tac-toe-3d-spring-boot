@@ -8,6 +8,8 @@ import java.util.UUID;
 
 public class GameMessages {
 
+    private static GameMessages instance = new GameMessages();
+
     public static void addMessage(GameMessage gameMessage) {
         Notifications.addUserNotification(gameMessage.getFromNickname());
         Notifications.addUserNotification(gameMessage.getToNickname());
@@ -16,6 +18,13 @@ public class GameMessages {
 
     public static GameMessage[] getMessages(@PathVariable String fromNickname) {
         return GameDatabase.getGamesFromOrTo(fromNickname);
+    }
+
+    // This makes it a singleton
+    private GameMessages() {}
+
+    public static GameMessages getInstance(){
+        return instance;
     }
 
     public static GameMessage getById(UUID id) {
