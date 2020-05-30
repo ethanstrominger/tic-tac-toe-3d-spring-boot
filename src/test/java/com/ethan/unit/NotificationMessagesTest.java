@@ -22,8 +22,19 @@ public class NotificationMessagesTest {
         GameMessage gameMessage = new GameMessage(fromName, toName, "A message");
         GameMessages.addMessage(gameMessage);
 
-        assertTrue(Notifications.isNotificationExists(fromName));
+        assertFalse(Notifications.isNotificationExists(fromName));
         assertTrue(Notifications.isNotificationExists(toName));
+
+    }
+
+    @Test
+    public void testNotificationDeletedWhenGetMessages() {
+        final String fromName = "Guinea Pig 1";
+        final String toName = "Guniea Pig 2";
+        GameMessage gameMessage = new GameMessage(fromName, toName, "A message");
+        GameMessages.addMessage(gameMessage);
+        GameMessage[] gameMessages = GameMessages.getMessages(toName);
+        assertFalse(Notifications.isNotificationExists(toName));
 
     }
 }

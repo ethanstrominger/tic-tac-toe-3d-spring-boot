@@ -11,12 +11,12 @@ public class GameMessages {
     private static GameMessages instance = new GameMessages();
 
     public static void addMessage(GameMessage gameMessage) {
-        Notifications.addUserNotification(gameMessage.getFromNickname());
         Notifications.addUserNotification(gameMessage.getToNickname());
         GameDatabase.addMessage(gameMessage);
     }
 
-    public static GameMessage[] getMessages(@PathVariable String fromNickname) {
+    public static GameMessage[] getMessages(String fromNickname) {
+        Notifications.deleteNotification(fromNickname);
         return GameDatabase.getGamesFromOrTo(fromNickname);
     }
 
