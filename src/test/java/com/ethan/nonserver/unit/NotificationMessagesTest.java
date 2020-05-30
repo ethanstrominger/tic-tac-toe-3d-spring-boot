@@ -24,7 +24,6 @@ public class NotificationMessagesTest {
 
         assertFalse(Notifications.isNotificationExists(fromName));
         assertTrue(Notifications.isNotificationExists(toName));
-
     }
 
     @Test

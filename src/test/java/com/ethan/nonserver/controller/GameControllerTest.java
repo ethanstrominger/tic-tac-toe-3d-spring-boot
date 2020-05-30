@@ -3,6 +3,8 @@ package com.ethan.nonserver.controller;
 import com.ethan.GameMessage;
 import com.ethan.GameMessageController;
 import com.ethan.GameMessages;
+import com.ethan.Notifications;
+import com.ethan.nonserver.TestUtil;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,10 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.Assert.assertEquals;
 
 public class GameControllerTest {
+
+    private static ResponseEntity<String> controllerThreadResponse =
+            new ResponseEntity<String>(HttpStatus.CREATED);
+
     @Test
     public void GameAddControllerReturnsCorrectBodyAndStatus() {
         GameMessage gameMessage = new GameMessage("a","b","c");
@@ -34,4 +40,25 @@ public class GameControllerTest {
         GameMessage[] resultMessage = r.getBody();
         assertEquals(resultMessage.length, GameMessages.getMessages(userName).length);
     }
+
+    @Test
+    public void testSetsHttpStatusToCreatedIfUserHasNotification() {
+        String userName = "Ethan";
+        int firstSleepMillis = 100;
+        int frequencyMillis = 25;
+        int timeoutMillis = 200;
+
+        new Thread(() -> {
+            controllerThreadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
+        }).start();
+
+        TestUtil.pause(firstSleepMillis);
+        assertEquals(HttpStatus.CREATED, controllerThreadResponse.getStatusCode() );
+        Notifications.addUserNotification(userName);
+
+        TestUtil.pause(timeoutMillis);
+        assertEquals(HttpStatus.ACCEPTED, controllerThreadResponse.getStatusCode() );
+    }
+
+
 }

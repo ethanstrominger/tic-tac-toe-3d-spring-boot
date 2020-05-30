@@ -37,6 +37,14 @@ public class GameMessageController {
         return new ResponseEntity<>(gameMessage, HttpStatus.OK);
     }
 
+    public static ResponseEntity<String> getNotifications(String userName) {
+        int frequencyMillis = 25;
+        int firstSleepMillis = 100;
+        int timeoutMillis = 200;
+        return Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
+    }
+
+
 //    @GetMapping("/test")
 //    DeferredResult<GameMessage[]> test(String userName, int pollingTime){
 //        Long timeOutInMilliSec = 100000L;

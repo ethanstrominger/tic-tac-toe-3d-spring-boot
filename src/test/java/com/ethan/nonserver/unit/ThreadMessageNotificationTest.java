@@ -1,6 +1,6 @@
 package com.ethan.nonserver.unit;
 import com.ethan.Notifications;
-import lombok.SneakyThrows;
+import com.ethan.nonserver.TestUtil;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +21,17 @@ public class ThreadMessageNotificationTest {
         long firstSleepMillis = 50;
         long frequencyMillis = 25;
         long timeoutMillis = 200;
+
         threadResponse = new ResponseEntity<String>(message, HttpStatus.CREATED);
+
         new Thread(() -> {
             threadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
         }).start();
 
-        pause(firstSleepMillis);
+        TestUtil.pause(firstSleepMillis);
         assertEquals(HttpStatus.CREATED, threadResponse.getStatusCode() );
 
-        pause(timeoutMillis);
+        TestUtil.pause(timeoutMillis);
         assertEquals(HttpStatus.REQUEST_TIMEOUT, threadResponse.getStatusCode());
     }
 
@@ -46,16 +48,12 @@ public class ThreadMessageNotificationTest {
             threadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
         }).start();
 
-        pause(firstSleepMillis);
+        TestUtil.pause(firstSleepMillis);
         assertEquals(HttpStatus.CREATED, threadResponse.getStatusCode() );
         Notifications.addUserNotification(userName);
 
-        pause(timeoutMillis);
+        TestUtil.pause(timeoutMillis);
         assertEquals(HttpStatus.ACCEPTED, threadResponse.getStatusCode());
     }
 
-    @SneakyThrows
-    private void pause(long firstSleepMillis) {
-        Thread.sleep(firstSleepMillis);
-    }
 }

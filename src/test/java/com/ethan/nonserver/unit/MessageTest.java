@@ -60,8 +60,7 @@ public class MessageTest {
         assertEquals(EXPECTED_MESSAGE, gameMessage.getMessageText());
     }
 
-
-
+    // TODO: Consider removing this
     @Test
     public void testGetMessageById() {
         GameMessage message1 = new GameMessage("Ethan", "Fred", "Hello");

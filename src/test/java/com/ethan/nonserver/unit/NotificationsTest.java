@@ -13,20 +13,20 @@ public class NotificationsTest {
     }
 
     @Test
-    public void testCanGetUsersWithMessages() {
+    public void testCanGetNotifications() {
         String[] notifs = Notifications.getUsersWithNotifications();
         assertTrue(true);
     }
 
     @Test
-    public void testCanAddUserMessage() {
+    public void testCanGetAddedNotification() {
         final String userName = "canaddusermessage";
         Notifications.addUserNotification(userName);
         assertEquals(1, Notifications.getUserNotificationCount());
     }
 
     @Test
-    public void testCanAddTwoUserMessages() {
+    public void testGetOnlyMyNotifications() {
         final String[] userNames = {"canadduser1", "canadduser2"};
         Notifications.addUserNotification(userNames[0]);
         Notifications.addUserNotification(userNames[1]);
@@ -44,7 +44,7 @@ public class NotificationsTest {
     }
 
     @Test
-    public void testUserNotAddedTwice() {
+    public void testNotificationNotAddedTwice() {
         final String userAddedTwiceName = "Twice";
         final String otherUser = "Other";
         Notifications.addUserNotification(userAddedTwiceName);
