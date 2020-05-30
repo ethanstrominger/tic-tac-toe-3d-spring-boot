@@ -1,4 +1,4 @@
-package com.ethan.controller;
+package com.ethan.nonserver.controller;
 
 import com.ethan.GameMessage;
 import com.ethan.GameMessageController;

@@ -1,4 +1,4 @@
-package com.ethan.unit;
+package com.ethan.nonserver.unit;
 import com.ethan.Notifications;
 import lombok.SneakyThrows;
 import org.junit.Test;

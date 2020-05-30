@@ -1,4 +1,4 @@
-package com.ethan.unit;
+package com.ethan.nonserver.unit;
 
 import com.ethan.Notifications;
 import org.junit.Before;
