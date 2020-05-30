@@ -18,7 +18,7 @@ public class NotificationMessagesTest {
     @Test
     public void testNotificationAddedWhenMessageAdded() {
         final String fromName = "Guinea Pig 1";
-        final String toName = "Guniea Pig 2";
+        final String toName = "Guinea Pig 2";
         GameMessage gameMessage = new GameMessage(fromName, toName, "A message");
         GameMessages.addMessage(gameMessage);
 
@@ -29,12 +29,11 @@ public class NotificationMessagesTest {
     @Test
     public void testNotificationDeletedWhenGetMessages() {
         final String fromName = "Guinea Pig 1";
-        final String toName = "Guniea Pig 2";
+        final String toName = "Guinea Pig 2";
         GameMessage gameMessage = new GameMessage(fromName, toName, "A message");
         GameMessages.addMessage(gameMessage);
-        GameMessage[] gameMessages = GameMessages.getMessages(toName);
+        GameMessages.getMessages(toName);
         assertFalse(Notifications.isNotificationExists(toName));
-
     }
 }
 

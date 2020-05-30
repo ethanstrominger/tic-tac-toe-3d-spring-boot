@@ -2,13 +2,7 @@ package com.ethan;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.async.DeferredResult;
-
-import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class GameMessageController {
@@ -28,20 +22,9 @@ public class GameMessageController {
     }
 
     @CrossOrigin
-    @GetMapping("/messages/getbyid/{id}")
-    public static @ResponseBody ResponseEntity<GameMessage>
-    getMessageById(@PathVariable String fromNickname, @RequestBody MultiValueMap<String,String> values) {
-        String s = values.getFirst("id");
-        UUID id = UUID.fromString(s);
-        GameMessage gameMessage = GameMessages.getById(id);
-        return new ResponseEntity<>(gameMessage, HttpStatus.OK);
-    }
-
-    @CrossOrigin
     @GetMapping("/messages/listen/{userName}")
     public static ResponseEntity<String> getNotifications(@PathVariable String userName) {
         int frequencyMillis = 25;
-        int firstSleepMillis = 100;
         int timeoutMillis = 200;
         return Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
     }
@@ -54,7 +37,7 @@ public class GameMessageController {
 //        DeferredResult<String> deferredResult = new DeferredResult<>(timeOutInMilliSec,timeOutResp);
 //        CompletableFuture.runAsync(()->{
 //            try {
-//                //Long pooling task;If task is not completed within 100 sec timeout response retrun for this request
+//                //Long pooling task;If task is not completed within 100 sec timeout response return for this request
 //                TimeUnit.MILLISECONDS.sleep(200);
 //                //set result after completing task to return response to client
 //                deferredResult.setResult("ok");

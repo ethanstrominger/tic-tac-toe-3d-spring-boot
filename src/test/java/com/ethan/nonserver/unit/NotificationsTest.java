@@ -13,21 +13,15 @@ public class NotificationsTest {
     }
 
     @Test
-    public void testCanGetNotifications() {
-        String[] notifs = Notifications.getUsersWithNotifications();
-        assertTrue(true);
-    }
-
-    @Test
     public void testCanGetAddedNotification() {
-        final String userName = "canaddusermessage";
+        final String userName = "can add user message";
         Notifications.addUserNotification(userName);
         assertEquals(1, Notifications.getUserNotificationCount());
     }
 
     @Test
     public void testGetOnlyMyNotifications() {
-        final String[] userNames = {"canadduser1", "canadduser2"};
+        final String[] userNames = {"can add user1", "can add user2"};
         Notifications.addUserNotification(userNames[0]);
         Notifications.addUserNotification(userNames[1]);
         assertEquals(2, Notifications.getUserNotificationCount());
@@ -35,7 +29,7 @@ public class NotificationsTest {
 
     @Test
     public void testCheckForUserNotification() {
-        final String[] userNames = {"canadduser1", "canadduser2"};
+        final String[] userNames = {"can add user1", "can add user2"};
         Notifications.addUserNotification(userNames[0]);
         Notifications.addUserNotification(userNames[0]);
         assertTrue(Notifications.isNotificationExists(userNames[0]));

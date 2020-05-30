@@ -8,8 +8,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+@SuppressWarnings({"unused", "InstantiationOfUtilityClass"})
 public class SingletonTests {
-    // TODO: Decide if tests are for code coverate purposes
+    // TODO: Decide if tests are for code coverage purposes
     // TODO: Should I make singletons follow this pattern
     @Test
     public void testMessagesClass() {
@@ -23,8 +24,9 @@ public class SingletonTests {
     public void testGameDatabase() { GameDatabase db = new GameDatabase(); }
 
     @Test
-    public void testNotifications() { Notifications notif = new Notifications(); }
+    public void testNotifications() { Notifications notification = new Notifications(); }
 
+    @SuppressWarnings("unused")
     @Test
     public void testMessageCentralApplication() { MessageCentralApplication app = new MessageCentralApplication(); }
 

@@ -11,8 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class ThreadMessageNotificationTest {
     // Variables set inside Thread() have to be static or get error
     private static ResponseEntity<String> threadResponse =
-            new ResponseEntity<String>(HttpStatus.CREATED);
-    String message = null;
+            new ResponseEntity<>(HttpStatus.CREATED);
 
     @Test
     public void testTimeout() {
@@ -22,11 +21,9 @@ public class ThreadMessageNotificationTest {
         long frequencyMillis = 25;
         long timeoutMillis = 200;
 
-        threadResponse = new ResponseEntity<String>(message, HttpStatus.CREATED);
+        threadResponse = new ResponseEntity<>(message, HttpStatus.CREATED);
 
-        new Thread(() -> {
-            threadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
-        }).start();
+        new Thread(() -> threadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis)).start();
 
         TestUtil.pause(firstSleepMillis);
         assertEquals(HttpStatus.CREATED, threadResponse.getStatusCode() );
@@ -41,12 +38,9 @@ public class ThreadMessageNotificationTest {
         int frequencyMillis = 25;
         int firstSleepMillis = 100;
         int timeoutMillis = 200;
-        String emptyMessage = null;
-        threadResponse = new ResponseEntity<String>(emptyMessage, HttpStatus.CREATED);
+        threadResponse = new ResponseEntity<>(null, HttpStatus.CREATED);
 
-        new Thread(() -> {
-            threadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
-        }).start();
+        new Thread(() -> threadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis)).start();
 
         TestUtil.pause(firstSleepMillis);
         assertEquals(HttpStatus.CREATED, threadResponse.getStatusCode() );

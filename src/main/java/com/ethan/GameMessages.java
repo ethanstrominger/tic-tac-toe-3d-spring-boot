@@ -1,14 +1,10 @@
 package com.ethan;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.UUID;
 
 public class GameMessages {
 
-    private static GameMessages instance = new GameMessages();
+    private static final GameMessages instance = new GameMessages();
 
     public static void addMessage(GameMessage gameMessage) {
         Notifications.addUserNotification(gameMessage.getToNickname());

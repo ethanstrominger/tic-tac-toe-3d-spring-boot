@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class GameControllerTest {
 
     private static ResponseEntity<String> controllerThreadResponse =
-            new ResponseEntity<String>(HttpStatus.CREATED);
+            new ResponseEntity<>(HttpStatus.CREATED);
 
     @Test
     public void GameAddControllerReturnsCorrectBodyAndStatus() {
@@ -24,6 +24,7 @@ public class GameControllerTest {
 
         assertEquals(r.getStatusCode(), HttpStatus.OK);
         GameMessage resultMessage = r.getBody();
+        //noinspection ConstantConditions
         assertEquals(gameMessage.getId(), resultMessage.getId());
     }
 
@@ -38,6 +39,7 @@ public class GameControllerTest {
 
         assertEquals(r.getStatusCode(), HttpStatus.OK);
         GameMessage[] resultMessage = r.getBody();
+        //noinspection ConstantConditions
         assertEquals(resultMessage.length, GameMessages.getMessages(userName).length);
     }
 
@@ -48,9 +50,7 @@ public class GameControllerTest {
         int frequencyMillis = 25;
         int timeoutMillis = 200;
 
-        new Thread(() -> {
-            controllerThreadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
-        }).start();
+        new Thread(() -> controllerThreadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis)).start();
 
         TestUtil.pause(firstSleepMillis);
         assertEquals(HttpStatus.CREATED, controllerThreadResponse.getStatusCode() );
