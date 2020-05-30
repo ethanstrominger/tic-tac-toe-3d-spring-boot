@@ -37,7 +37,9 @@ public class GameMessageController {
         return new ResponseEntity<>(gameMessage, HttpStatus.OK);
     }
 
-    public static ResponseEntity<String> getNotifications(String userName) {
+    @CrossOrigin
+    @GetMapping("/messages/listen/{userName}")
+    public static ResponseEntity<String> getNotifications(@PathVariable String userName) {
         int frequencyMillis = 25;
         int firstSleepMillis = 100;
         int timeoutMillis = 200;
