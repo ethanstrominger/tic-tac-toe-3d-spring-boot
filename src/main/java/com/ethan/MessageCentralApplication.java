@@ -9,7 +9,7 @@ public class MessageCentralApplication {
 	public static void main(String[] args) {
 		System.out.println("Starting server");
 		SpringApplication.run(MessageCentralApplication.class, args);
-		System.out.println("Server is started");
+		System.out.println("Server is started!!");
 	}
 
 }

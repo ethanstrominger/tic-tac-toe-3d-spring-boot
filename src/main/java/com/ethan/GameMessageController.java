@@ -7,6 +7,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class GameMessageController {
     @CrossOrigin
+    @GetMapping("/messages/listen/{userName}")
+    public static ResponseEntity<String> getNotifications(@PathVariable String userName) {
+        System.out.println("listen");
+        int frequencyMillis = 25;
+        int timeoutMillis = 200;
+        ResponseEntity<String> r = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
+        System.out.println(r.getStatusCode()+" "+r.getBody());
+        return r;
+    }
+
+    @CrossOrigin
     @PostMapping(value="/messages/create")
     public static @ResponseBody  ResponseEntity<GameMessage> controllerAddMessage (@RequestBody GameMessage gameMessage) {
         GameMessages.addMessage(gameMessage);
@@ -17,17 +28,12 @@ public class GameMessageController {
     @GetMapping("/messages/getbyuser/{fromNickname}")
     public static @ResponseBody ResponseEntity<GameMessage[]>
     getMessages(@PathVariable String fromNickname) {
+        System.out.println("Getting messages");
         GameMessage[] gameMessages = GameMessages.getMessages(fromNickname);
         return new ResponseEntity<>(gameMessages, HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @GetMapping("/messages/listen/{userName}")
-    public static ResponseEntity<String> getNotifications(@PathVariable String userName) {
-        int frequencyMillis = 25;
-        int timeoutMillis = 200;
-        return Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis);
-    }
+
 
 
 //    @GetMapping("/test")
