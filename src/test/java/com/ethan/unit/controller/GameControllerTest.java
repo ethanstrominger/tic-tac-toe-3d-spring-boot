@@ -1,10 +1,10 @@
-package com.ethan.nonserver.controller;
+package com.ethan.unit.controller;
 
 import com.ethan.GameMessage;
 import com.ethan.GameMessageController;
 import com.ethan.GameMessages;
 import com.ethan.Notifications;
-import com.ethan.nonserver.TestUtil;
+import com.ethan.unit.TestUtil;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

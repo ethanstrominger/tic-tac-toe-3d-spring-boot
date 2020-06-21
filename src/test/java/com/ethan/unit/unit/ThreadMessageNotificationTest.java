@@ -1,6 +1,6 @@
-package com.ethan.nonserver.unit;
+package com.ethan.unit.unit;
 import com.ethan.Notifications;
-import com.ethan.nonserver.TestUtil;
+import com.ethan.unit.TestUtil;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +43,7 @@ public class ThreadMessageNotificationTest {
         new Thread(() -> threadResponse = Notifications.pollForChanges(userName, frequencyMillis, timeoutMillis)).start();
 
         TestUtil.pause(firstSleepMillis);
-        assertEquals(HttpStatus.CREATED, threadResponse.getStatusCode() );
+        assertEquals(HttpStatus.ACCEPTED, threadResponse.getStatusCode() );
         Notifications.addUserNotification(userName);
 
         TestUtil.pause(timeoutMillis);

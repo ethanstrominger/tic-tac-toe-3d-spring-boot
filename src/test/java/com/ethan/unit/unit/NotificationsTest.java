@@ -1,4 +1,4 @@
-package com.ethan.nonserver.unit;
+package com.ethan.unit.unit;
 
 import com.ethan.Notifications;
 import org.junit.Before;
@@ -38,7 +38,7 @@ public class NotificationsTest {
     }
 
     @Test
-    public void testNotificationNotAddedTwice() {
+    public void testNotificationNotAddedTwice2() {
         final String userAddedTwiceName = "Twice";
         final String otherUser = "Other";
         Notifications.addUserNotification(userAddedTwiceName);

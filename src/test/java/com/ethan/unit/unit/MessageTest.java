@@ -1,4 +1,4 @@
-package com.ethan.nonserver.unit;
+package com.ethan.unit.unit;
 
 import com.ethan.GameMessage;
 import com.ethan.GameMessages;
