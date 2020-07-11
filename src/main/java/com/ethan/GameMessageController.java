@@ -4,10 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
-@RestController
+@Controller
 public class GameMessageController {
 //    @CrossOrigin
 //    @MessageMapping("/messages/send/user/{toNickname}")
@@ -21,7 +22,7 @@ public class GameMessageController {
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public MessageToClient greeting(MessageFromClient message) throws Exception {
-        System.out.print("ABCABC");
+        System.out.println("ABCABC **************");
         Thread.sleep(1000); // simulated delay
         return new MessageToClient("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
     }
