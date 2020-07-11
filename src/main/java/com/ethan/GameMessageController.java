@@ -17,9 +17,11 @@ public class GameMessageController {
 //        return new ResponseEntity<>(gameMessage, HttpStatus.OK);
 //    }
 
+    @CrossOrigin
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public MessageToClient greeting(MessageFromClient message) throws Exception {
+        System.out.print("ABCABC");
         Thread.sleep(1000); // simulated delay
         return new MessageToClient("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
     }
